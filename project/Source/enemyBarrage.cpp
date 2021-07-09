@@ -14,7 +14,7 @@ namespace {
 	};
 }
 
-EnemyBarrage::EnemyBarrage(SceneBase* _scene, Vector2 _pos, double _base_angle,int _bulletMax, Vector2 _playerPos, int _bulletKind, int _bulletColor, float _speed) : GameObject(_scene)
+EnemyBarrage::EnemyBarrage(SceneBase* _scene, Vector2 _pos, double _base_angle, int _bulletMax, Vector2 _playerPos, int _bulletKind, int _bulletColor, float _speed) : GameObject(_scene)
 {
 	bulletMax = _bulletMax;
 	//pattern = 0;
@@ -65,8 +65,8 @@ void EnemyBarrage::Update()
 	}*/
 
 	cnt += 1;
-	position.x = position.x + cos(angle) * spd;
-	position.y = position.y + sin(angle) * spd;
+	position.x = position.x + cos(base_angle) * spd;
+	position.y = position.y + sin(base_angle) * spd;
 
 	/*âÊñ äOÇ…èoÇΩÇÁè¡Ç∑*/
 	/*for (int i = 0; i < bulletMax; i++) {
@@ -101,7 +101,7 @@ void EnemyBarrage::Draw()
 	//}
 
 	if (flag) {
-		DrawRotaGraph((int)position.x, (int)position.y, 1, base_angle, hImage[bulletKind],true);
+		DrawRotaGraph((int)position.x, (int)position.y, 1, base_angle, hImage[bulletKind], true);
 	}
 	SetDrawBright(255, 255, 255);
 }

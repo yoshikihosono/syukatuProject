@@ -16,18 +16,20 @@ EnemyShot::EnemyShot(SceneBase* _scene, Vector2 _pos, int _maxbullet, int _barra
 	pattern = _barrageKind;
 	bulletKind = _bulletKind;
 	bulletColor = _bulletColor;
-	speed = 1;
+	speed = 3;
 	coolTime = 0;
 
-	eB = GetScene()->FindGameObject<EnemyBarrage>();
-	eBM = GetScene()->FindGameObject<EnemyBarrageManager>();
+	first = true;
 
+	eBM = GetScene()->FindGameObject<EnemyBarrageManager>();
+	pl = GetScene()->FindGameObject<Player>();
+	plPos = pl->GetPosition();
 }
 
 EnemyShot::~EnemyShot() {
 }
 
-void EnemyShot::update() {
+void EnemyShot::Update() {
 	switch (pattern) {
 	case 0: ShotPattern_0(); break;
 	case 1: ShotPattern_1(); break;
@@ -36,22 +38,29 @@ void EnemyShot::update() {
 	case 4: ShotPattern_4(); break;
 	default:break;
 	}
-	eBM->Create(base_position, base_angle, bulletMax, bulletKind, bulletColor, speed);
+
+	if (first == true) {
+		for (int i = 0; i < bulletMax; i++) {
+			eBM->Create(base_position, base_angle, bulletMax, bulletKind, bulletColor, speed);
+		}
+		first = false;
+	}
 }
 
-void EnemyShot::draw()
+void EnemyShot::Draw()
 {
 }
 
 void EnemyShot::ShotPattern_0() {
-
-	base_angle = (360 / bulletMax);
-	eBM->Create(base_position, base_angle,bulletMax, bulletKind, bulletColor,5);
+	//ŠgŽU’e
+	for (int i = 0; i < bulletMax; i++) {
+		base_angle = (360 / bulletMax) * i * (DX_PI / 180);
+	}
 }
 
 void EnemyShot::ShotPattern_1() {
+	//ƒz[ƒ~ƒ“ƒO
 	base_angle = Shotatan2(base_position);
-	eBM->Create(base_position, base_angle, bulletMax, bulletKind, bulletColor, 5);
 }
 
 void EnemyShot::ShotPattern_2() {

@@ -148,6 +148,7 @@ void Furball::MovePattern_3()
 		velocity.y -= 5 / 50;
 		velocity.x -= 5;
 		//eBM->Create(position, maxBullet, barrageKind, bulletKind, color);
+		eSM->Create(position, maxBullet, barrageKind, bulletKind, color);
 	}
 
 	/*if (cnt == waitTime + 65) {
@@ -173,11 +174,5 @@ void Furball::MovePattern_4()
 
 void Furball::MovePattern_5()
 {
-	if (cnt == waitTime)
-		velocity.y = 3;
 
-	if (cnt == waitTime + 60) {
-		velocity.y = 0;
-		//eBM->Create(position, maxBullet, barrageKind, bulletKind, color);
-	}
 }

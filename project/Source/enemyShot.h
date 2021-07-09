@@ -3,13 +3,14 @@
 #include "vector2.h"
 #include "enemyBarrage.h"
 #include "enemyBarrageManager.h"
+#include "player.h"
 
 class EnemyShot : public GameObject {
 public:
 	EnemyShot(SceneBase* _scene, Vector2 _pos, int _maxbullet, int _barrageKind, int _bulletKind, int _bulletColor);
 	~EnemyShot();
-	void update();
-	void draw();
+	void Update();
+	void Draw();
 	void ShotPattern_0();
 	void ShotPattern_1();
 	void ShotPattern_2();
@@ -29,8 +30,9 @@ private:
 	int interval;
 	float coolTime;
 	float speed;
+	bool first;
 
 	Vector2 plPos;
-	EnemyBarrage* eB;
 	EnemyBarrageManager* eBM;
+	Player* pl;
 };
