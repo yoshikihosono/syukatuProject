@@ -77,6 +77,12 @@
     <ClCompile Include="Source\enemyShotManager.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\vShaped_BOSS.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\vShaped_MINIONS.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\config.h" />
@@ -175,6 +181,12 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\enemyShotManager.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\vShaped_BOSS.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\vShaped_MINIONS.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
   </ItemGroup>

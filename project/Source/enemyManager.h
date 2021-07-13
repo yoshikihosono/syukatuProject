@@ -1,7 +1,9 @@
 #pragma once
 #include "..//Library/gameObject.h"
 #include "vector2.h"
+
 class EnemyBase;
+class VShaped_BOSS;
 
 class EnemyManager : public GameObject {
 public:
@@ -13,6 +15,7 @@ public:
 	enum ENEMY_TYPE {
 		FURBALL,	//ñ—ã 
 		FAIRY,	//ódê∏
+		VSHAPED,	//Véöå^ÇÃï“ë‡
 	};
 
 	void Create(ENEMY_TYPE type,int x,			int y,			int cnt,			int pattern,

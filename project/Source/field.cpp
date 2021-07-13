@@ -85,6 +85,7 @@ void Field::Start()
 			switch (type) {
 			case 0: eM->Create(EnemyManager::ENEMY_TYPE::FURBALL, x, y, cnt, pattern, speed, barrageTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind); break;
 			case 1: eM->Create(EnemyManager::ENEMY_TYPE::FAIRY, x, y, cnt, pattern, speed, barrageTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind); break;
+			case 2: eM->Create(EnemyManager::ENEMY_TYPE::VSHAPED, x, y, cnt, pattern, speed, barrageTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind); break;
 			}
 			num = 0;
 			n++;

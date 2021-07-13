@@ -17,8 +17,6 @@ Furball::Furball(SceneBase* scene, int _x, int _y, int _cnt, int _pattern,
 	position = Vector2(_x, _y);
 	hImage = LoadGraph("data\\texture\\furball.png");
 	assert(hImage > 0);
-	value			= 255;
-	size			= 0;
 	cnt				= _cnt;
 	pattern			= _pattern;
 	speed			= _speed;

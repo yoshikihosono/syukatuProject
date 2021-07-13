@@ -23,8 +23,6 @@ public:
 	void MovePattern_5() override;
 private:
 	int hImage;
-	float value;
-	float size;
 	bool hitShot;
 	Vector2 position;
 	Vector2 velocity;	//ë¨ìxê¨ï™

@@ -165,6 +165,8 @@
     <ClInclude Include="Source\struct.h" />
     <ClInclude Include="Source\titleScene.h" />
     <ClInclude Include="Source\vector2.h" />
+    <ClInclude Include="Source\vShaped_BOSS.h" />
+    <ClInclude Include="Source\vShaped_MINIONS.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Library\app.cpp" />
@@ -193,6 +195,8 @@
     <ClCompile Include="Source\shotBase.cpp" />
     <ClCompile Include="Source\shotManager.cpp" />
     <ClCompile Include="Source\titleScene.cpp" />
+    <ClCompile Include="Source\vShaped_BOSS.cpp" />
+    <ClCompile Include="Source\vShaped_MINIONS.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

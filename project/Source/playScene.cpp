@@ -7,7 +7,6 @@
 #include "board.h"
 #include "enemyManager.h"
 #include "field.h"
-#include "furball.h"
 #include "efectManager.h"
 #include "enemyBarrageManager.h"
 #include "itemManager.h"

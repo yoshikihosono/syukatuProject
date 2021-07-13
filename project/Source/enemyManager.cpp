@@ -1,6 +1,8 @@
 #include "enemyManager.h"
 #include "furball.h"
 #include "playScene.h"
+#include "vShaped_BOSS.h"
+#include "vShaped_MINIONS.h"
 
 EnemyManager::EnemyManager(SceneBase * scene) : GameObject(scene)
 {
@@ -49,6 +51,15 @@ void EnemyManager::Create(ENEMY_TYPE type,	int x,			int y,			int cnt,			int patt
 		e = new Furball(GetScene(), x, y, cnt, pattern, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
 			break;
 	case FAIRY:
+		break;
+	case VSHAPED:
+		//êeï™
+		e = new VShaped_BOSS(GetScene(), x, y, cnt, pattern, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
+		//éqï™
+		e = new VShaped_MINIONS(GetScene(), x - 30, y - 30, cnt, 1, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
+		e = new VShaped_MINIONS(GetScene(), x - 60, y - 60, cnt, 2, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
+		e = new VShaped_MINIONS(GetScene(), x + 30, y - 30, cnt, 3, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
+		e = new VShaped_MINIONS(GetScene(), x + 60, y - 60, cnt, 4, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
 		break;
 	}
 
