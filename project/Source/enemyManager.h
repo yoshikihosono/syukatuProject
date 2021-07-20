@@ -23,6 +23,7 @@ public:
 				int hp,			int bulletKind, int waitTime,	int stagnationTime, int itemKind);
 
 	EnemyBase* Collision(Vector2 center, float radius) const;
+
 private:
 	std::list<EnemyBase*> enemies;
 };

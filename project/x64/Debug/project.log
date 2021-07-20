@@ -1,2 +1,4 @@
-﻿  enemyManager.cpp
+﻿  vShaped_BOSS.cpp
+c:\users\g0913\desktop\syukatu\project\source\vshaped_boss.cpp(85): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+c:\users\g0913\desktop\syukatu\project\source\vshaped_boss.cpp(86): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
   project.vcxproj -> C:\Users\G0913\Desktop\syukatu\project\x64\Debug\project.exe

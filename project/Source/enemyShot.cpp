@@ -55,6 +55,7 @@ void EnemyShot::ShotPattern_0() {
 	//ŠgŽU’e
 	for (int i = 0; i < bulletMax; i++) {
 		base_angle = (360 / bulletMax) * i * (DX_PI / 180);
+		//eBM->Create(base_position, base_angle, bulletMax, bulletKind, bulletColor, speed);
 	}
 }
 

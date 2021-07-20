@@ -23,6 +23,7 @@ Player::Player(SceneBase* scene) : GameObject(scene)
 	assert(hPlayerCoreImage > 0);
 	pubPos = position;
 	exist = true;
+
 	efM = GetScene()->FindGameObject<EfectManager>();
 	eM = GetScene()->FindGameObject<EnemyManager>();
 	itM = GetScene()->FindGameObject<ItemManager>();
@@ -224,7 +225,9 @@ void Player::Resurrection()
 void Player::Collision()
 {
 	if (state == ALIVE) {
-		e = eM->Collision(Vector2(corePosition.x + 5.0f, corePosition.y + 5.0f), 5.0f);
+		if (e != nullptr) {
+			e = eM->Collision(Vector2(corePosition.x + 5.0f, corePosition.y + 5.0f), 5.0f);
+		}
 		EnemyBarrageManager* eBM = GetScene()->FindGameObject<EnemyBarrageManager>();
 		eBM->GetPlayerPosition(Vector2(corePosition.x + 5.0f, corePosition.y + 5.0f));
 

@@ -11,7 +11,7 @@ namespace {
 
 VShaped_MINIONS::VShaped_MINIONS(SceneBase* scene, int _x, int _y, int _cnt, int _pattern,
 	float _speed, int _barrageTime, int _maxBullet, int _barrageKind, int _color,
-	int _hp, int _bulletKind, int _waitTime, int _stagnationTime, int _itemKind) : EnemyBase(scene)
+	int _hp, int _bulletKind, int _waitTime, int _stagnationTime, int _itemKind, EnemyBase* _boss) : EnemyBase(scene)
 {
 	position = Vector2(_x, _y);
 	hImage = LoadGraph("data\\texture\\furball.png");
@@ -29,22 +29,27 @@ VShaped_MINIONS::VShaped_MINIONS(SceneBase* scene, int _x, int _y, int _cnt, int
 	stagnationTime = _stagnationTime;
 	itemKind = _itemKind;
 	shotFlag = false;
+	specialAttack = false;
 
-	boss = scene->FindGameObject<VShaped_BOSS>();
+	itM = GetScene()->FindGameObject<ItemManager>();
+	efM = GetScene()->FindGameObject<EfectManager>();
+	eM = GetScene()->FindGameObject<EnemyManager>();
+	pl = GetScene()->FindGameObject<Player>();
+	boss = _boss;
 	bPosition = boss->GetPosition();
+	beforeBossPos = boss->GetPosition();
 }
 
 VShaped_MINIONS::~VShaped_MINIONS()
 {
 	DeleteGraph(hImage);
+	boss = nullptr;
 }
 
 void VShaped_MINIONS::Update()
 {
-	if (GetScene()->FindGameObject<VShaped_BOSS>() != NULL) {
-		boss = GetScene()->FindGameObject<VShaped_BOSS>();
-		bPosition = boss->GetPosition();
-	}
+	bPosition = boss->GetPosition();
+	base_angle = HomingBoss(bPosition);
 
 	if (hp == 0) {
 		efM->Create(position, 0, 0, 10, 0.5f, 0.5f, Efect::ColorPalette::white);
@@ -52,56 +57,48 @@ void VShaped_MINIONS::Update()
 		DestroyMe();
 	}
 
-	if (position.x + WIDTH < 310 || position.x > 1175 || position.y + HEIGHT < -40 || position.y > 1040) {
+	if (position.x + WIDTH < 250 || position.x > 1175 || position.y + HEIGHT < -200 || position.y > 1040) {
 		DestroyMe();
 	}
 
-
-	switch (pattern)
-	{
-	case 1:
-
-		position.x = bPosition.x - 30;
-		position.y = bPosition.y - 30;
-
-		break;
-
-	case 2:
-
-		position.x = bPosition.x - 60;
-		position.y = bPosition.y - 60;
-
-		break;
-
-	case 3:
-
-		position.x = bPosition.x + 30;
-		position.y = bPosition.y - 30;
-
-		break;
-
-	case 4:
-
-		position.x = bPosition.x + 60;
-		position.y = bPosition.y - 60;
-
-		break;
-	}
+	position.x = position.x + cos(base_angle) * 3;
+	position.y = position.y + sin(base_angle) * 3;
 
 	cnt++;
-	position.x += velocity.x * speed;
-	position.y += velocity.y * speed;
+	//position.x += velocity.x * speed;
+	//position.y += velocity.y * speed;
+	beforeBossPos = boss->GetPosition();
 }
 
 void VShaped_MINIONS::Draw()
 {
+	DrawRectGraph((int)position.x, (int)position.y, 0, 0, 40, 40, hImage, true);
 }
 
 bool VShaped_MINIONS::Collision(Vector2 center, float radius) const
 {
-	return false;
+	if (hp == 0)
+		return false;
+
+	float dx = (position.x + CENTER_X) - center.x;
+	float dy = (position.y + CENTER_Y) - center.y;
+	return (dx*dx + dy * dy < (radius + RADIUS)*(radius + RADIUS));
 }
 
 void VShaped_MINIONS::AddDamage(int damage)
 {
+	hp -= damage;
+	if (hp < 0) {
+		hp = 0;
+	}
+}
+
+void VShaped_MINIONS::setBoss(EnemyBase * _e)
+{
+	boss = _e;
+}
+
+double VShaped_MINIONS::HomingBoss(Vector2 _bPos)
+{
+	return atan2((float)_bPos.y - beforeBossPos.y, (float)_bPos.x - beforeBossPos.x);
 }

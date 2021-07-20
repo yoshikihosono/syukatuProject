@@ -37,29 +37,39 @@ void EnemyManager::Update()
 
 void EnemyManager::Draw()
 {
-	for (auto e : enemies)
+	for (auto e : enemies) {
 		e->Draw();
+	}
 }
 
-void EnemyManager::Create(ENEMY_TYPE type,	int x,			int y,			int cnt,			int pattern,	
-						  float speed,		int barraeTime,	int maxBullet,	int barrageKind,	int color,
-						  int hp,			int bulletKind, int waitTime,	int stagnationTime,	int itemKind)
+void EnemyManager::Create(ENEMY_TYPE type, int x, int y, int cnt, int pattern,
+	float speed, int barraeTime, int maxBullet, int barrageKind, int color,
+	int hp, int bulletKind, int waitTime, int stagnationTime, int itemKind)
 {
 	EnemyBase* e = nullptr;
 	switch (type) {
 	case FURBALL:
 		e = new Furball(GetScene(), x, y, cnt, pattern, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
-			break;
+		break;
 	case FAIRY:
 		break;
 	case VSHAPED:
 		//êeï™
 		e = new VShaped_BOSS(GetScene(), x, y, cnt, pattern, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
+		enemies.emplace_back(e);
+		EnemyBase* boss;
+		boss = e;
 		//éqï™
-		e = new VShaped_MINIONS(GetScene(), x - 30, y - 30, cnt, 1, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
-		e = new VShaped_MINIONS(GetScene(), x - 60, y - 60, cnt, 2, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
-		e = new VShaped_MINIONS(GetScene(), x + 30, y - 30, cnt, 3, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
-		e = new VShaped_MINIONS(GetScene(), x + 60, y - 60, cnt, 4, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind);
+		e = new VShaped_MINIONS(GetScene(), x - 30, y - 30, cnt, 1, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind, boss);
+		if (e != nullptr)
+			enemies.emplace_back(e);
+		e = new VShaped_MINIONS(GetScene(), x - 60, y - 60, cnt, 2, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind, boss);
+		if (e != nullptr)
+			enemies.emplace_back(e);
+		e = new VShaped_MINIONS(GetScene(), x + 30, y - 30, cnt, 3, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind, boss);
+		if (e != nullptr)
+			enemies.emplace_back(e);
+		e = new VShaped_MINIONS(GetScene(), x + 60, y - 60, cnt, 4, speed, barraeTime, maxBullet, barrageKind, color, hp, bulletKind, waitTime, stagnationTime, itemKind, boss);
 		break;
 	}
 

@@ -17,19 +17,19 @@ Furball::Furball(SceneBase* scene, int _x, int _y, int _cnt, int _pattern,
 	position = Vector2(_x, _y);
 	hImage = LoadGraph("data\\texture\\furball.png");
 	assert(hImage > 0);
-	cnt				= _cnt;
-	pattern			= _pattern;
-	speed			= _speed;
-	barrageTime		= _barrageTime;
-	maxBullet		= _maxBullet;
-	barrageKind		= _barrageKind;
-	color			= _color;
-	hp				= _hp;
-	bulletKind		= _bulletKind;
-	waitTime		= _waitTime;
-	stagnationTime	= _stagnationTime;
-	itemKind		= _itemKind;
-	shotFlag		= false;
+	cnt = _cnt;
+	pattern = _pattern;
+	speed = _speed;
+	barrageTime = _barrageTime;
+	maxBullet = _maxBullet;
+	barrageKind = _barrageKind;
+	color = _color;
+	hp = _hp;
+	bulletKind = _bulletKind;
+	waitTime = _waitTime;
+	stagnationTime = _stagnationTime;
+	itemKind = _itemKind;
+	shotFlag = false;
 
 	eBM = GetScene()->FindGameObject<EnemyBarrageManager>();
 	efM = GetScene()->FindGameObject<EfectManager>();
@@ -114,13 +114,8 @@ void Furball::MovePattern_1()
 	if (cnt == waitTime)
 		velocity.y = 3;
 
-	if (cnt == waitTime + 60)
-		velocity.y = 0;
-
-	if (cnt == waitTime + 60 + stagnationTime) {
-		velocity.y = 3;
-		velocity.x = -1;
-	}
+	if (cnt == waitTime + 180)
+		eSM->Create(position, maxBullet, barrageKind, bulletKind, color);
 }
 
 void Furball::MovePattern_2()
@@ -166,7 +161,7 @@ void Furball::MovePattern_4()
 	if (cnt == waitTime + 60) {
 		velocity.y -= 5 / 50;
 		velocity.x += 5;
-		//eBM->Create(position, maxBullet, barrageKind, bulletKind, color);
+		eSM->Create(position, maxBullet, barrageKind, bulletKind, color);
 	}
 }
 

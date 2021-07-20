@@ -20,6 +20,7 @@ public:
 	virtual void MovePattern_3(){}	//移動パターン
 	virtual void MovePattern_4(){}	//移動パターン
 	virtual void MovePattern_5(){}	//移動パターン
+	virtual Vector2 GetPosition() { return position; }
 private:
 	Vector2 position;	//座標
 	Vector2 velocity;	//速度成分

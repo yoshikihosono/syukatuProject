@@ -16,7 +16,7 @@ public:
 	bool Collision(Vector2 center, float radius) const override;
 	void AddDamage(int damage) override;
 	void MovePattern_0() override;
-	Vector2 GetPosition();
+	Vector2 GetPosition() override;
 private:
 	int hImage;
 	bool hitShot;

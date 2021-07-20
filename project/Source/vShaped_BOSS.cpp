@@ -49,16 +49,23 @@ void VShaped_BOSS::Update()
 		DestroyMe();
 	}
 
-	if (position.x + WIDTH < 310 || position.x > 1175 || position.y + HEIGHT < -40 || position.y > 1040) {
+	/*if (position.x + WIDTH < 310 || position.x > 1175 || position.y + HEIGHT < -40 || position.y > 1040) {
 		DestroyMe();
-	}
+	}*/
 
 	//switch (pattern)
 	//{
 	//case 0: MovePattern_0(); break;	//â∫Ç…à⁄ìÆÅAàÍíËéûä‘é~Ç‹Ç¡Çƒè„Ç…ñﬂÇÈ
 	//}
 
-	velocity.y = 3;
+	if (cnt == waitTime) {
+		velocity.y = 3;
+	}
+
+	if (cnt == waitTime + 150) {
+		velocity.y = 0;
+		velocity.x = 3;
+	}
 
 	cnt++;
 	position.x += velocity.x * speed;
@@ -90,8 +97,8 @@ void VShaped_BOSS::AddDamage(int damage)
 
 void VShaped_BOSS::MovePattern_0()
 {
-	if (cnt == waitTime)
-		velocity.y = 3;
+	//if (cnt == waitTime)
+		//velocity.y = 3;
 }
 
 Vector2 VShaped_BOSS::GetPosition()
